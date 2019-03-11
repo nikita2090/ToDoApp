@@ -1,0 +1,23 @@
+.todo-input-wrapper {
+    display:flex;
+    align-content: center;
+    position: relative;
+    border-bottom: 1px solid darkgrey;
+}
+
+.todo-input {
+    box-sizing: border-box;
+    padding-left: 60px;
+    min-height: 60px;
+    width: 100%;
+    font-size: 28px;
+    border: none;
+}
+
+.fa-plus {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 24px;
+}
