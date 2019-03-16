@@ -33,8 +33,8 @@ const Footer = ({amount, activeFilter}) => (
 );
 
 Footer.propTypes = {
-    amount: PropTypes.number,
-    activeFilter: PropTypes.string
+    amount: PropTypes.number.isRequired,
+    activeFilter: PropTypes.string.isRequired
 };
 
 export default Footer;

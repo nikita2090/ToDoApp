@@ -8,45 +8,51 @@ import {Container, Row, Col} from 'reactstrap';
 
 import './ToDo.css';
 
-
-const TASKS = [
-    {
-        id: 1,
-        text: 'Javascript',
-        isComplited: true
-    },
-
-    {
-        id: 2,
-        text: 'React',
-        isComplited: true
-    },
-
-    {
-        id: 3,
-        text: 'Redux',
-        isComplited: true
-    }
-];
+import {connect} from 'react-redux';
+import {addTask, toggleTask} from '../../actions/actionCreator'
 
 class ToDo extends Component {
     state = {
-        activeFilter: 'all'
+        activeFilter: 'all',
+        inputText: ''
     };
+
+    handleInputChange = ({target: {value}}) => {
+        this.setState({
+            inputText: value
+        })
+    };
+
+    addTask = ({key}) => {
+        const {inputText} = this.state;
+        if (inputText.length > 3 && key === 'Enter') {
+            const {addTask} = this.props;
+
+            addTask(new Date().getTime(), inputText, false);
+
+            this.setState({
+                inputText: ''
+            });
+        }
+    };
+
 
     render() {
         const {activeFilter} = this.state;
-        const taskList = TASKS;
-        const isTaskExists = taskList && taskList.length > 0;
+        const {tasks, toggleTask} = this.props;
+        const isTaskExists = tasks && tasks.length > 0;
 
         return (
             <Container>
                 <Row>
-                    <Col >
+                    <Col>
                         <div className='todo-wrapper'>
-                            <ToDoInput/>
-                            {isTaskExists && <ToDoList taskList={taskList}/>}
-                            {isTaskExists && <Footer amount={taskList.length}
+                            <ToDoInput
+                                value={this.state.inputText}
+                                onChange={this.handleInputChange}
+                                onKeyPress={this.addTask}/>
+                            {isTaskExists && <ToDoList taskList={tasks} toggleTask={toggleTask}/>}
+                            {isTaskExists && <Footer amount={tasks.length}
                                                      activeFilter={activeFilter}/>}
                         </div>
                     </Col>
@@ -56,4 +62,6 @@ class ToDo extends Component {
     }
 }
 
-export default ToDo;
+export default connect(state => ({
+    tasks: state.tasks
+}), {addTask, toggleTask})(ToDo);

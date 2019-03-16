@@ -3,10 +3,11 @@ import PropTypes from 'prop-types';
 
 import './ToDoItem.css';
 
-const ToDoItem = ({text, isCompleted}) => (
+const ToDoItem = ({text, isCompleted, toggleTask, id}) => (
     <li className="todo-item">
         <i className={isCompleted ?
-                        'mark far fa-check-circle' : 'mark far fa-circle'}/>
+                        'mark far fa-check-circle' : 'mark far fa-circle'}
+            onClick={() => toggleTask(id)}/>
         <span className={isCompleted ?
                             'completed text' : 'text'}>{text}</span>
         <i className="fas fa-times"/>
@@ -14,13 +15,10 @@ const ToDoItem = ({text, isCompleted}) => (
 );
 
 ToDoItem.propTypes = {
-    text: PropTypes.string,
-    isCompleted: PropTypes.bool
-};
-
-ToDoItem.defaultProps = {
-    text: '',
-    isCompleted: false
+    text: PropTypes.string.isRequired,
+    isCompleted: PropTypes.bool.isRequired,
+    toggleTask: PropTypes.func.isRequired,
+    id: PropTypes.number.isRequired
 };
 
 export default ToDoItem;
