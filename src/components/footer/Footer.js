@@ -18,14 +18,15 @@ const FILTERS_BTN = [
     }
 ];
 
-const Footer = ({amount, activeFilter}) => (
-    <div className="footer">
-        <span className="amount">{`${amount} Tasks left`}</span>
-        <div className="btn-group">
+const Footer = ({amount, activeFilter, changeFilter}) => (
+    <div className='footer'>
+        <span className='amount'>{`${amount} Tasks left`}</span>
+        <div className='btn-group'>
             {FILTERS_BTN.map(({text, id}) => (
                 <button
-                    key = {id}
-                    className = {id ===activeFilter ? 'filter-btn active' : 'filter-btn'}
+                    key={id}
+                    className={id === activeFilter ? 'filter-btn active' : 'filter-btn'}
+                    onClick={() => changeFilter(id)}
                 >{text}</button>
             ))}
         </div>
@@ -34,7 +35,8 @@ const Footer = ({amount, activeFilter}) => (
 
 Footer.propTypes = {
     amount: PropTypes.number.isRequired,
-    activeFilter: PropTypes.string.isRequired
+    activeFilter: PropTypes.string.isRequired,
+    changeFilter: PropTypes.func
 };
 
 export default Footer;

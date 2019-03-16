@@ -1,4 +1,4 @@
-import {ADD_TASK, TOGGLE_TASK} from '../constants';
+import {ADD_TASK, TOGGLE_TASK, DELETE_TASK} from '../constants';
 
 const TASKS = [
     {
@@ -37,6 +37,8 @@ const tasks = (state = TASKS, {type, id, text, isCompleted}) => {
                 }
                 return task;
             });
+        case DELETE_TASK:
+            return [...state].filter( task => task.id !== id);
         default:
             return state;
     }
