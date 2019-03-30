@@ -24,12 +24,23 @@ ToDoList.propTypes = {
     taskList: PropTypes.arrayOf(
         PropTypes.shape({
             id: PropTypes.number,
-            text: PropTypes.string.isRequired,
+            text: PropTypes.string,
             isCompleted: PropTypes.bool,
-        }).isRequired
-    ).isRequired,
-    toggleTask: PropTypes.func.isRequired,
-    deleteTask: PropTypes.func.isRequired
+        })
+    ),
+    toggleTask: PropTypes.func,
+    deleteTask: PropTypes.func
 };
+
+ToDoList.defaultProps = {
+    taskList: {
+        id: 0,
+        text: '',
+        isCompleted: false
+    },
+    toggleTask: () => {},
+    deleteTask: () => {}
+};
+
 
 export default ToDoList;

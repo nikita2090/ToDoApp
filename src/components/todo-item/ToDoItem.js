@@ -18,11 +18,19 @@ const ToDoItem = ({text, isCompleted, id, toggleTask, deleteTask}) => (
 );
 
 ToDoItem.propTypes = {
-    text: PropTypes.string.isRequired,
-    isCompleted: PropTypes.bool.isRequired,
-    id: PropTypes.number.isRequired,
-    toggleTask: PropTypes.func.isRequired,
-    deleteTask: PropTypes.func.isRequired,
+    text: PropTypes.string,
+    isCompleted: PropTypes.bool,
+    id: PropTypes.number,
+    toggleTask: PropTypes.func,
+    deleteTask: PropTypes.func,
+};
+
+ToDoItem.defaultProps = {
+    text: '',
+    isCompleted: false,
+    id: 0,
+    toggleTask: () => {},
+    deleteTask: () => {},
 };
 
 export default ToDoItem;

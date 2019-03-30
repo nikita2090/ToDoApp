@@ -1,5 +1,5 @@
 .todo-input-wrapper {
-    display:flex;
+    display: flex;
     align-content: center;
     position: relative;
     border-bottom: 1px solid darkgrey;
@@ -20,4 +20,5 @@
     top: 50%;
     transform: translateY(-50%);
     font-size: 24px;
+    cursor: pointer;
 }

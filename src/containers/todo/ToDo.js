@@ -3,7 +3,6 @@ import React, {Component} from 'react';
 import ToDoInput from '../../components/todo-input/ToDoInput';
 import ToDoList from '../../components/todo-list/ToDoList';
 import Footer from '../../components/footer/Footer';
-
 import {Container, Row, Col} from 'reactstrap';
 
 import './ToDo.css';
@@ -13,7 +12,6 @@ import {addTask, toggleTask, deleteTask, changeFilter} from '../../actions/actio
 
 class ToDo extends Component {
     state = {
-        activeFilter: 'all',
         inputText: ''
     };
 
@@ -23,9 +21,19 @@ class ToDo extends Component {
         })
     };
 
-    addTask = ({key}) => {
+    onPlusClick = () => {
+        this.addTask();
+    };
+
+    onEnterPress = ({key}) => {
+        if (key === 'Enter') {
+            this.addTask();
+        }
+    };
+
+    addTask = () => {
         const {inputText} = this.state;
-        if (inputText.length > 2 && key === 'Enter') {
+        if (inputText.length > 2) {
             const {addTask} = this.props;
 
             addTask(new Date().getTime(), inputText, false);
@@ -54,6 +62,7 @@ class ToDo extends Component {
 
 
     render() {
+        const {inputText} = this.state;
         const {tasks, toggleTask, deleteTask, filter, changeFilter} = this.props;
         const isTaskExists = tasks && tasks.length > 0;
 
@@ -66,9 +75,11 @@ class ToDo extends Component {
                     <Col>
                         <div className='todo-wrapper'>
                             <ToDoInput
-                                value={this.state.inputText}
+                                value={inputText}
                                 onChange={this.handleInputChange}
-                                onKeyPress={this.addTask}/>
+                                onEnterPress={this.onEnterPress}
+                                onPlusClick={this.onPlusClick}
+                            />
                             {isTaskExists && <ToDoList taskList={filteredTasks}
                                                        toggleTask={toggleTask}
                                                        deleteTask={deleteTask}/>}
