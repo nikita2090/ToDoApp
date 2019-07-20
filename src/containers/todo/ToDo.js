@@ -1,14 +1,15 @@
 import React, {Component} from 'react';
 
+import './ToDo.css';
+
 import ToDoInput from '../../components/todo-input/ToDoInput';
 import ToDoList from '../../components/todo-list/ToDoList';
 import Footer from '../../components/footer/Footer';
 import {Container, Row, Col} from 'reactstrap';
 
-import './ToDo.css';
-
 import {connect} from 'react-redux';
 import {addTask, toggleTask, deleteTask, changeFilter} from '../../actions/actionCreator'
+
 
 class ToDo extends Component {
     state = {
@@ -56,7 +57,7 @@ class ToDo extends Component {
         }
     };
 
-    getActiveTasks = (tasks) => tasks.filter(task =>(
+    getActiveTasks = (tasks) => tasks.filter(task => (
         !task.isCompleted
     )).length;
 
@@ -93,6 +94,7 @@ class ToDo extends Component {
         )
     }
 }
+
 
 export default connect(({tasks, filter}) => ({
     tasks,

@@ -2,7 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import './Title.css';
+
 import {Container, Row, Col} from "reactstrap/dist/reactstrap.es";
+
 
 const Title = ({title}) => (
     <header>

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import './Footer.css';
 
+
 const FILTERS_BTN = [
     {
         text: 'all',
@@ -17,6 +18,7 @@ const FILTERS_BTN = [
         id: 'completed'
     }
 ];
+
 
 const Footer = ({amount, activeFilter, changeFilter}) => (
     <div className='footer'>

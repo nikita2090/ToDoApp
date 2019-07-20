@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import ToDoItem from '../../components/todo-item/ToDoItem';
 import './ToDoList.css';
+
+import ToDoItem from '../../components/todo-item/ToDoItem';
 
 
 const ToDoList = ({taskList, toggleTask, deleteTask}) => (
@@ -19,6 +20,7 @@ const ToDoList = ({taskList, toggleTask, deleteTask}) => (
         ))}
     </ul>
 );
+
 
 ToDoList.propTypes = {
     taskList: PropTypes.arrayOf(

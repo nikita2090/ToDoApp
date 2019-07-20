@@ -1,5 +1,13 @@
-import {createStore, compose} from 'redux';
+import {createStore, compose, applyMiddleware} from 'redux';
 import rootReducer from './reducers/index';
+import {save} from 'redux-localstorage-simple';
+
+
+/*const logger = (state) => (next) => (action) => {
+    console.log('action started', action);
+    next(action);
+    console.log('action finished', action);
+};*/
 
 const composeEnhancers =
     typeof window === 'object' &&
@@ -13,7 +21,11 @@ const configureStore = preloadedState => (
     createStore(
         rootReducer,
         preloadedState,
-        composeEnhancers()
+        composeEnhancers(
+            applyMiddleware(
+                save({namespace: 'to-do-app'})
+            )
+        )
     )
 );
 

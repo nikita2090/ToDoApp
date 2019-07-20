@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import './ToDoItem.css';
 
+
 const ToDoItem = ({text, isCompleted, id, toggleTask, deleteTask}) => (
     <li className="todo-item">
         <i className={isCompleted ?
@@ -16,6 +17,7 @@ const ToDoItem = ({text, isCompleted, id, toggleTask, deleteTask}) => (
            onClick={() => deleteTask(id)}/>
     </li>
 );
+
 
 ToDoItem.propTypes = {
     text: PropTypes.string,

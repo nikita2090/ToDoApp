@@ -1,4 +1,4 @@
-import {ADD_TASK, TOGGLE_TASK, DELETE_TASK, CHANGE_FILTER } from '../constants';
+import {ADD_TASK, TOGGLE_TASK, DELETE_TASK, CHANGE_FILTER} from '../constants';
 
 export const addTask = (id, text, isCompleted) => ({
     type: ADD_TASK,

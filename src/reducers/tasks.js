@@ -1,26 +1,15 @@
 import {ADD_TASK, TOGGLE_TASK, DELETE_TASK} from '../constants';
+import { load } from 'redux-localstorage-simple';
 
-const TASKS = [
-    {
-        id: 1,
-        text: 'Javascript',
-        isCompleted: true
-    },
+let STATE = load({namespace: 'to-do-app'});
 
-    {
-        id: 2,
-        text: 'React',
-        isCompleted: true
-    },
-
-    {
-        id: 3,
-        text: 'Redux',
-        isCompleted: false
+if (!STATE || !STATE.tasks || !STATE.tasks.length) {
+    STATE = {
+        tasks: []
     }
-];
+}
 
-const tasks = (state = TASKS, {type, id, text, isCompleted}) => {
+const tasks = (state = STATE.tasks, {type, id, text, isCompleted}) => {
     switch (type) {
         case ADD_TASK:
             return [
@@ -38,7 +27,7 @@ const tasks = (state = TASKS, {type, id, text, isCompleted}) => {
                 return task;
             });
         case DELETE_TASK:
-            return [...state].filter( task => task.id !== id);
+            return [...state].filter(task => task.id !== id);
         default:
             return state;
     }
